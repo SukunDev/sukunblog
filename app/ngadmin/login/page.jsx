@@ -1,5 +1,6 @@
+import LoginForm from "@/components/admin/loginForm";
 import React from "react";
-import { getUsers, login } from "./actions";
+import { getUsers } from "./actions";
 
 export default async function Login() {
   await getUsers();
@@ -12,43 +13,7 @@ export default async function Login() {
           <div className="mb-4 text-lg font-semibold text-slate-600">
             <h2>Login</h2>
           </div>
-          <form className="flex flex-col space-y-4">
-            <div className="flex flex-col">
-              <label
-                className="text-sm font-medium capitalize text-slate-500"
-                htmlFor="email"
-              >
-                email
-              </label>
-              <input
-                className="px-4 py-2 transition duration-200 bg-gray-100 rounded-md outline-none hover:bg-gray-200 focus:bg-gray-200"
-                type="email"
-                name="email"
-                id="email"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label
-                className="text-sm font-medium capitalize text-slate-500"
-                htmlFor="password"
-              >
-                password
-              </label>
-              <input
-                className="px-4 py-2 transition duration-200 bg-gray-100 rounded-md outline-none hover:bg-gray-200 focus:bg-gray-200"
-                type="password"
-                name="password"
-                id="password"
-              />
-            </div>
-            <button
-              className="py-2 mx-8 font-semibold text-white transition duration-300 bg-green-400 hover:bg-green-500 rounded-xl"
-              type="submit"
-              formAction={login}
-            >
-              Log in
-            </button>
-          </form>
+          <LoginForm />
         </div>
       </div>
     </>

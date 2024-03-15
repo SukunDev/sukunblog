@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { createClient } from "@/utils/supabase/server";
 
@@ -22,7 +22,7 @@ export async function getUsers() {
   const { data, error } = await supabase.auth.getUser();
   const { data: profiles } = await supabase.from("profiles").select().single();
   if (error || !data?.user) {
-    return redirect("/");
+    return notFound();
   }
   return { data, profiles };
 }
