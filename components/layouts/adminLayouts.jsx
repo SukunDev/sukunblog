@@ -5,10 +5,10 @@ import SidebarAdmin from "../admin/sidebarAdmin";
 export default async function AdminLayouts({ children }) {
   const { data, profiles } = await getUsers();
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
-      <div className="flex items-start">
-        <SidebarAdmin data={data} profiles={profiles} />
-        <div>{children}</div>
+    <div className="relative flex flex-col h-screen overflow-hidden text-slate-900">
+      <SidebarAdmin data={data} profiles={profiles} />
+      <div className="w-full mt-4 mx-4 overflow-y-auto translate-x-80 max-w-[calc(100vw-21rem)]">
+        {children}
       </div>
     </div>
   );
