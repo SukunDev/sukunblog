@@ -1,3 +1,5 @@
+"use client";
+
 import useHeader from "@/hooks/useHeader";
 import { motion } from "framer-motion";
 import Link from "next/link";

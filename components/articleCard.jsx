@@ -37,7 +37,7 @@ export default function ArticleCard({ post }) {
         <h2>
           <Link
             className="block mt-3 text-lg font-semibold transition duration-300 sm:text-xl md:text-lg line-clamp-2 hover:text-blue-500"
-            href={post.slug}
+            href={`/${post.slug}`}
           >
             {post.title}
           </Link>
