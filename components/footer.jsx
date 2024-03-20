@@ -9,7 +9,7 @@ export default function Footer() {
   const { data } = useThemeContext();
 
   return (
-    <footer className="mb-16 bg-gray-100 xs:mb-0">
+    <footer className="mt-16 mb-16 bg-gray-100 xs:mb-0">
       <div className="container hidden px-2 mx-auto mt-16 mb-8 md:px-4 xs:block">
         <div className="flex flex-col-reverse items-center justify-between gap-6 md:gap-0 md:flex-row">
           <div className="flex flex-col space-y-4">

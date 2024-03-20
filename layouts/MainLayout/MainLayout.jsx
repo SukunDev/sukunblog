@@ -1,10 +1,10 @@
-import React from "react";
-import Headers from "../headers";
-import Sidebar from "../sidebar";
-import Footer from "../footer";
+import Footer from "@/components/footer";
+import Headers from "@/components/headers";
+import Sidebar from "@/components/sidebar";
 import { ThemeContextProvider } from "@/hooks/providers";
+import React from "react";
 
-export default function AppLayouts({ children }) {
+export default function MainLayout({ children }) {
   return (
     <ThemeContextProvider>
       <div className="flex flex-col min-h-screen">

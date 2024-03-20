@@ -1,3 +1,5 @@
+"use client";
+
 import useHeader from "@/hooks/useHeader";
 import Link from "next/link";
 import React from "react";

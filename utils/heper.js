@@ -32,3 +32,27 @@ export function formatDate(dateString) {
 
   return `${dayName}, ${day} ${monthName} ${year}`;
 }
+
+export function getTableContent(html) {
+  const regex = /<h(\d)>(.*?)<\/h\d>/g;
+  const result = [];
+  let match;
+
+  while ((match = regex.exec(html)) !== null) {
+    const tagName = `h${match[1]}`;
+    const text = match[2].trim();
+    result.push({ tag: tagName, text: text });
+  }
+
+  return result;
+}
+
+export function addIdToHeadings(html) {
+  return html.replace(
+    /<h(\d)>(.*?)<\/h\d>/g,
+    (match, headingLevel, headingText) => {
+      const id = headingText.trim().replace(/\s+/g, "-").toLowerCase();
+      return `<h${headingLevel} id="${id}">${headingText}</h${headingLevel}>`;
+    }
+  );
+}
