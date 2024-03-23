@@ -1,5 +1,6 @@
 "use server";
 
+import { notFound } from "next/navigation";
 import { createClient } from "./supabase/server";
 
 export async function login({ formData }) {
@@ -66,4 +67,64 @@ export async function getPosts({ params }) {
     },
     error,
   };
+}
+
+export async function getPost({ params }) {
+  const slug = params.slug;
+
+  const supabase = createClient();
+  const { data: post, error } = await supabase
+    .from("posts")
+    .select(
+      `
+      id,
+      title,
+      slug,
+      thumbnail,
+      content,
+      categories (
+        id,
+        name,
+        slug
+      ),
+      visibility,
+      meta_description,
+      created_at
+    `
+    )
+    .eq("slug", slug)
+    .single();
+
+  if (error) {
+    return notFound();
+  }
+  return { post };
+}
+
+export async function getCategories() {
+  const supabase = createClient();
+  const { data: categories, error } = await supabase
+    .from("categories")
+    .select("*");
+
+  return { categories, error };
+}
+
+export async function insertPost({ formData }) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .insert([formData])
+    .select();
+  return { data, error };
+}
+
+export async function updatePost({ formData, post_id }) {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("posts")
+    .update([formData])
+    .eq("id", post_id)
+    .select();
+  return { data, error };
 }

@@ -2,7 +2,7 @@
 
 import SingleArticle from "@/components/singleArticle";
 import MainLayout from "@/layouts/MainLayout/MainLayout";
-import { getPosts } from "@/utils/clientAction";
+import { getPost } from "@/utils/clientAction";
 import { formatDate } from "@/utils/heper";
 import Link from "next/link";
 import React from "react";
@@ -13,7 +13,7 @@ import {
 } from "react-icons/pi";
 
 export async function generateMetadata({ params }) {
-  const { post } = await getPosts({ params });
+  const { post } = await getPost({ params });
   return {
     title: post.title,
   };
