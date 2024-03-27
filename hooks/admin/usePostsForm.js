@@ -62,7 +62,8 @@ function usePostsForm({ post }) {
       }
       toast("Article berhasil di rubah", { type: "success" });
     }
-    router.push("/ngadmin/posts/edit/" + formData.slug);
+    router.push("/ngadmin/posts");
+    router.refresh();
   };
 
   return {

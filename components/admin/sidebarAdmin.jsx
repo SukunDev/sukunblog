@@ -4,10 +4,7 @@ import useSidebarAdmin from "@/hooks/admin/useSidebarAdmin";
 import Link from "next/link";
 import React from "react";
 import {
-  PiFile,
   PiFileText,
-  PiGear,
-  PiHash,
   PiHouseSimple,
   PiSignOut,
   PiSpinnerGap,
@@ -53,45 +50,6 @@ export default function SidebarAdmin() {
             >
               <PiFileText className="inline mr-2 -mt-1 text-2xl" />
               posts
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`block px-4 py-2 text-lg capitalize transition duration-300 rounded-md text-slate-300 ${
-                pathname === "/ngadmin/pages"
-                  ? "bg-white/5 font-medium"
-                  : "hover:bg-white/5"
-              }`}
-              href={"/ngadmin/pages"}
-            >
-              <PiFile className="inline mr-2 -mt-1 text-2xl" />
-              pages
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`block px-4 py-2 text-lg capitalize transition duration-300 rounded-md text-slate-300 ${
-                pathname === "/ngadmin/categories"
-                  ? "bg-white/5 font-medium"
-                  : "hover:bg-white/5"
-              }`}
-              href={"/ngadmin/categories"}
-            >
-              <PiHash className="inline mr-2 -mt-1 text-2xl" />
-              categories
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`block px-4 py-2 text-lg capitalize transition duration-300 rounded-md text-slate-300 ${
-                pathname === "/ngadmin/settings"
-                  ? "bg-white/5 font-medium"
-                  : "hover:bg-white/5"
-              }`}
-              href={"/ngadmin/settings"}
-            >
-              <PiGear className="inline mr-2 -mt-1 text-2xl" />
-              settings
             </Link>
           </li>
         </ul>
