@@ -2,11 +2,9 @@
 
 import SingleArticle from "@/components/singleArticle";
 import MainLayout from "@/layouts/MainLayout/MainLayout";
+import { getPost } from "@/utils/clientAction";
 import { formatDate } from "@/utils/heper";
-import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-
 import React from "react";
 import {
   PiCalendarCheck,
@@ -59,39 +57,3 @@ export default async function SinglePost({ params }) {
     </MainLayout>
   );
 }
-
-const getPost = async ({ params }) => {
-  try {
-    const slug = params.slug;
-
-    const supabase = createClient();
-    const { data: post, error } = await supabase
-      .from("posts")
-      .select(
-        `
-    id,
-    title,
-    slug,
-    thumbnail,
-    content,
-    categories (
-      id,
-      name,
-      slug
-    ),
-    visibility,
-    created_at
-  `
-      )
-      .eq("slug", slug)
-      .eq("visibility", true)
-      .single();
-
-    if (error) {
-      return notFound();
-    }
-    return { post };
-  } catch (error) {
-    return notFound();
-  }
-};
