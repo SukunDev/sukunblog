@@ -144,3 +144,39 @@ export async function getPost({ params }) {
     return notFound();
   }
 }
+
+export async function getProjects() {
+  try {
+    const supabase = createClient();
+    const { data: projects, error } = await supabase
+      .from("projects")
+      .select(`*`)
+      .order("created_at", { ascending: false })
+      .limit(4);
+
+    return {
+      projects,
+      error,
+    };
+  } catch (error) {
+    return notFound();
+  }
+}
+
+export async function getNewPosts() {
+  try {
+    const supabase = createClient();
+    const { data: new_posts, error } = await supabase
+      .from("posts")
+      .select(`id, title, slug, visibility, created_at`)
+      .order("created_at", { ascending: false })
+      .eq("visibility", true)
+      .limit(5);
+
+    return {
+      new_posts,
+    };
+  } catch (error) {
+    return notFound();
+  }
+}

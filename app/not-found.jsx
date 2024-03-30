@@ -1,5 +1,13 @@
-import React from "react";
+import MainLayout from "@/layouts/MainLayout/MainLayout";
 
-export default function notFound() {
-  return <div>not-found</div>;
+export default async function NotFound() {
+  return (
+    <>
+      <MainLayout>
+        <div className="mx-auto text-3xl font-semibold capitalize w-fit">
+          <h2>NotFound</h2>
+        </div>
+      </MainLayout>
+    </>
+  );
 }

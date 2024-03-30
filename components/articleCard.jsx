@@ -30,14 +30,14 @@ export default function ArticleCard({ post }) {
         </div>
         <Link
           className="block px-3 py-0.5 text-xs text-white hover:bg-indigo-600 transition duration-300 bg-indigo-700 rounded-full w-fit mt-4"
-          href={`/category/${post.categories.slug}`}
+          href={`${process.env.NEXT_PUBLIC_URL}/category/${post.categories.slug}`}
         >
           {post.categories.name}
         </Link>
         <h2>
           <Link
             className="block mt-3 text-lg font-semibold transition duration-300 sm:text-xl md:text-lg line-clamp-2 hover:text-blue-500"
-            href={`/${post.slug}`}
+            href={`${process.env.NEXT_PUBLIC_URL}/${post.slug}`}
           >
             {post.title}
           </Link>
