@@ -15,7 +15,23 @@ import {
 export async function generateMetadata({ params }) {
   const { post } = await getPost({ params });
   return {
+    alternates: {
+      canonical: `/${post.slug}`,
+    },
     title: post.title,
+    openGraph: {
+      title: post.title,
+      description: post.meta_description,
+      url: `${process.env.NEXT_PUBLIC_URL}/${post.slug}`,
+      siteName: process.env.NEXT_PUBLIC_TITLE,
+      locale: "id_ID",
+      type: "article",
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_URL}/${post.thumbnail}`,
+        },
+      ],
+    },
   };
 }
 
@@ -27,13 +43,17 @@ export default async function SinglePost({ params }) {
       <div className="flex flex-col overflow-hidden">
         <ul className="flex items-center gap-2 p-2 text-sm font-medium bg-gray-100 rounded-lg line-clamp-1 text-nowrap text-slate-700">
           <li>
-            <Link href={"/"}>Home</Link>
+            <Link href={process.env.NEXT_PUBLIC_URL}>Home</Link>
           </li>
           <li>
             <PiCaretRightBold className="text-gray-500" />
           </li>
           <li>
-            <Link href={"/"}>Info</Link>
+            <Link
+              href={`${process.env.NEXT_PUBLIC_URL}/category/${post.categories.slug}`}
+            >
+              {post.categories.name}
+            </Link>
           </li>
           <li>
             <PiCaretRightBold className="text-gray-500" />

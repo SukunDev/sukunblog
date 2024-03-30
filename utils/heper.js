@@ -56,3 +56,7 @@ export function addIdToHeadings(html) {
     }
   );
 }
+
+export function capitalize(string) {
+  return string.replace(/^./, string[0].toUpperCase());
+}

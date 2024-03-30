@@ -33,7 +33,10 @@ export default function SideMenu({ links }) {
       >
         <div className="flex flex-col h-full px-2 bg-white">
           <div className="p-6 mx-auto">
-            <Link className="text-2xl font-bold" href={"/"}>
+            <Link
+              className="text-2xl font-bold"
+              href={process.env.NEXT_PUBLIC_URL}
+            >
               Sukun<span className="font-normal">Dev</span>
             </Link>
           </div>
@@ -47,7 +50,7 @@ export default function SideMenu({ links }) {
                     : "text-slate-800 font-medium hover:font-semibold rounded-lg hover:text-indigo-600 hover:scale-y-105 hover:bg-gray-100 active:bg-gray-200 transition-all duration-300"
                 }`}
                 key={idx}
-                href={link.href}
+                href={`${process.env.NEXT_PUBLIC_URL}/${link.href}`}
               >
                 {link.name}
               </Link>
@@ -56,7 +59,10 @@ export default function SideMenu({ links }) {
           <div className="mx-2 my-4 text-xs text-center">
             <p>
               Copyright © 2024{" "}
-              <Link className="text-indigo-500 underline" href={"/"}>
+              <Link
+                className="text-indigo-500 underline"
+                href={process.env.NEXT_PUBLIC_URL}
+              >
                 SukunDev Blog
               </Link>
               . All Right Reserved

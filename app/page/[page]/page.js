@@ -4,6 +4,27 @@ import { getPosts } from "@/utils/clientAction";
 import { redirect } from "next/navigation";
 import React from "react";
 
+export async function generateMetadata({ params }) {
+  return {
+    alternates: {
+      canonical: `/page/${params.page}`,
+    },
+    openGraph: {
+      title: `${process.env.NEXT_PUBLIC_TITLE} - ${process.env.NEXT_PUBLIC_DESCRIPTION}`,
+      description: process.env.NEXT_PUBLIC_DESCRIPTION,
+      url: `${process.env.NEXT_PUBLIC_URL}/page/${params.page}`,
+      siteName: process.env.NEXT_PUBLIC_TITLE,
+      locale: "id_ID",
+      type: "article",
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_URL}/thumbnail.png`,
+        },
+      ],
+    },
+  };
+}
+
 export default async function PostsPage({ params }) {
   if (params.page == 1) redirect("/");
   const { posts, meta_paginator } = await getPosts({ params });

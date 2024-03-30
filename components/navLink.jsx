@@ -12,7 +12,7 @@ function NavLink({ links }) {
       {links.map((link, idx) => (
         <Link
           key={idx}
-          href={link.href}
+          href={`${process.env.NEXT_PUBLIC_URL}/${link.href}`}
           className={`px-4 capitalize text-lg  ${
             pathname == link.href
               ? "font-bold text-indigo-600 scale-x-105"

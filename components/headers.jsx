@@ -35,12 +35,15 @@ export default function Headers() {
               <PiList className="text-3xl transition duration-300 text-slate-500 hover:text-slate-700 active:text-slate-500a" />
             </button>
             <h1 className="py-4 mx-auto xs:mx-0 xs:py-0">
-              <Link className="text-2xl font-bold" href={"/"}>
+              <Link
+                className="text-2xl font-bold"
+                href={process.env.NEXT_PUBLIC_URL}
+              >
                 Sukun<span className="font-normal">Dev</span>
               </Link>
             </h1>
             <NavLink links={data.categories} />
-            <button className="hidden p-4 xs:block">
+            <button className="hidden p-4 xs:block" aria-label="Search Button">
               <IoIosSearch className="text-3xl transition duration-300 text-slate-500 hover:text-slate-700 active:text-slate-500" />
             </button>
           </div>
@@ -51,13 +54,19 @@ export default function Headers() {
         <div className="px-4 py-2 bg-white shadow-lg">
           <ul className="flex items-center justify-between text-slate-600">
             <li>
-              <Link className="text-xs capitalize" href={"/"}>
+              <Link
+                className="text-xs capitalize"
+                href={process.env.NEXT_PUBLIC_URL}
+              >
                 <PiHouseSimple className="ml-1 text-3xl" />
                 home
               </Link>
             </li>
             <li>
-              <Link className="text-xs capitalize" href={"/"}>
+              <Link
+                className="text-xs capitalize"
+                href={process.env.NEXT_PUBLIC_URL}
+              >
                 <PiBookOpenText className="ml-1 text-3xl" />
                 article
               </Link>

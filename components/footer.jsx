@@ -19,7 +19,7 @@ export default function Footer() {
                   <li key={idx}>
                     <Link
                       className="block capitalize transition duration-300 hover:text-indigo-600 hover:scale-x-105"
-                      href={item.href}
+                      href={`${process.env.NEXT_PUBLIC_URL}/${item.href}`}
                     >
                       {item.name}
                     </Link>
@@ -31,8 +31,11 @@ export default function Footer() {
             )}
             <p className="text-sm text-center md:text-start">
               Copyright © 2024{" "}
-              <Link className="text-indigo-600 underline" href="/">
-                sukunblog.com
+              <Link
+                className="text-indigo-600 underline"
+                href={`${process.env.NEXT_PUBLIC_URL}`}
+              >
+                sukundev.com
               </Link>
               . All Right Reserved.
             </p>

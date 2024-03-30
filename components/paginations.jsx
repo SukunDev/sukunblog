@@ -15,7 +15,10 @@ export default function Paginations({ meta_paginator }) {
           <li>
             <Link
               className="block p-2 mx-1 transition duration-300 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-600 hover:text-white rounded-xl active:scale-110"
-              href={current_page - 1 === 1 ? "/" : `/page/${current_page - 1}`}
+              href={`${process.env.NEXT_PUBLIC_URL}${
+                current_page - 1 === 1 ? "/" : "/page/" + current_page - 1
+              }`}
+              aria-label="Previous Button"
             >
               <PiCaretLeft className="text-xl" />
             </Link>
@@ -32,7 +35,10 @@ export default function Paginations({ meta_paginator }) {
                       ? "text-white bg-gray-600 border-gray-600"
                       : "border-gray-500 hover:bg-gray-600 hover:border-gray-600"
                   } hover:text-white rounded-xl active:scale-110`}
-                  href={page === 1 ? "/" : `/page/${page}`}
+                  href={
+                    process.env.NEXT_PUBLIC_URL +
+                    (page === 1 ? "/" : `/page/${page}`)
+                  }
                 >
                   {page}
                 </Link>
@@ -43,7 +49,8 @@ export default function Paginations({ meta_paginator }) {
           <li>
             <Link
               className="block p-2 mx-1 transition duration-300 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-600 hover:text-white rounded-xl active:scale-110"
-              href={`/page/${current_page + 1}`}
+              href={`${process.env.NEXT_PUBLIC_URL}/page/${current_page + 1}`}
+              aria-label="Next Button"
             >
               <PiCaretLeft className="text-xl rotate-180" />
             </Link>

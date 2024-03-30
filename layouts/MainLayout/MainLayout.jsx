@@ -2,9 +2,11 @@ import Footer from "@/components/footer";
 import Headers from "@/components/headers";
 import Sidebar from "@/components/sidebar";
 import { ThemeContextProvider } from "@/hooks/providers";
+import { getNewPosts } from "@/utils/clientAction";
 import React from "react";
 
-export default function MainLayout({ children }) {
+export default async function MainLayout({ children }) {
+  const { new_posts } = await getNewPosts();
   return (
     <ThemeContextProvider>
       <div className="flex flex-col min-h-screen">
@@ -15,7 +17,7 @@ export default function MainLayout({ children }) {
               <main className="col-span-1 mx-2 lg:col-span-5 md:mx-4">
                 {children}
               </main>
-              <Sidebar />
+              <Sidebar new_article={new_posts} />
             </div>
           </div>
         </div>
