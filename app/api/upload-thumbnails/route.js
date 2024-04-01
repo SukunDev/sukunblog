@@ -16,7 +16,10 @@ export const POST = async (req, res) => {
   const buffer = Buffer.from(await file.arrayBuffer());
   const filename = file.name.replaceAll(" ", "_");
   try {
-    await writeFile(path.join("public/thumbnails/" + filename), buffer);
+    await writeFile(
+      path.join(process.cwd(), "public/thumbnails/" + filename),
+      buffer
+    );
     return NextResponse.json({
       success: true,
       result: `${process.env.NEXT_PUBLIC_URL}/thumbnails/${filename}`,
