@@ -1,5 +1,7 @@
 import "./globals.css";
 
+export const revalidate = 60;
+
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL),
   alternates: {
