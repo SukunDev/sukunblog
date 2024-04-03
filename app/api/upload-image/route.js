@@ -20,7 +20,7 @@ export const POST = async (req, res) => {
     if (response.data.success) {
       return NextResponse.json({
         success: true,
-        result: `${process.env.NEXT_PUBLIC_URL}/images/${response.data.data.id}`,
+        result: `${process.env.NEXT_PUBLIC_URL}/img/${response.data.data.id}`,
         status: 201,
       });
     } else {
