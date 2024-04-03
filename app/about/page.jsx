@@ -60,7 +60,7 @@ export default async function AboutPage() {
           <div className="w-full sm:w-2/5">
             <Image
               className="mx-auto"
-              src={"/img/lutfi-cartoon.png"}
+              src={"/uploads/lutfi-cartoon.png"}
               alt="sukundev"
               width={280}
               height={280}

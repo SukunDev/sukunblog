@@ -1,6 +1,5 @@
+import axios from "axios";
 import { NextResponse } from "next/server";
-import path from "path";
-import { writeFile } from "fs/promises";
 
 export const POST = async (req, res) => {
   const formData = await req.formData();
@@ -9,23 +8,32 @@ export const POST = async (req, res) => {
   if (!file) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
-
-  const buffer = Buffer.from(await file.arrayBuffer());
   const filename = file.name.replaceAll(" ", "_");
   try {
-    await writeFile(
-      path.join(process.cwd(), "public/uploads/" + filename),
-      buffer
-    );
-    return NextResponse.json({
-      success: true,
-      result: `${process.env.NEXT_PUBLIC_URL}/uploads/${filename}`,
-      status: 201,
+    let data = new FormData();
+    data.append("image", file);
+    data.append("type", "file");
+    data.append("title", filename);
+    const response = await axios.post(`https://api.imgur.com/3/image`, data, {
+      Authorization: `Client-ID ${process.env.NEXT_PUBLIC_IMGUR_CLIENT_ID}`,
     });
+    if (response.data.success) {
+      return NextResponse.json({
+        success: true,
+        result: `${process.env.NEXT_PUBLIC_URL}/img/${response.data.data.id}`,
+        status: 201,
+      });
+    } else {
+      return NextResponse.json({
+        success: false,
+        message: response.data.message,
+        status: 500,
+      });
+    }
   } catch (error) {
     return NextResponse.json({
-      status: false,
-      messag: error.toString(),
+      success: false,
+      message: error.toString(),
       status: 500,
     });
   }
