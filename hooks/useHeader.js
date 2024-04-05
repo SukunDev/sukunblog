@@ -4,22 +4,26 @@ import React, { useEffect, useState } from "react";
 
 function useHeader() {
   const pathname = usePathname();
-  const { data } = useThemeContext();
-  const [menuOpened, setMenuOpened] = useState(false);
+  const { data, handleDataChange } = useThemeContext();
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleButtonMenu = () => {
-    setMenuOpened(!menuOpened);
+    handleDataChange({ menuOpened: !data.menuOpened });
   };
 
   useEffect(() => {
-    if (menuOpened) {
+    if (data.menuOpened) {
       document.querySelector("body").classList.add("overflow-hidden");
     } else {
       document.querySelector("body").classList.remove("overflow-hidden");
     }
-  }, [menuOpened]);
+  }, [data.menuOpened]);
 
-  return { handleButtonMenu, pathname, menuOpened, data };
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  return { handleButtonMenu, pathname, data, isLoading };
 }
 
 export default useHeader;

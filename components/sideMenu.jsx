@@ -3,15 +3,18 @@
 import useHeader from "@/hooks/useHeader";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function SideMenu({ links }) {
-  const { handleButtonMenu, menuOpened, pathname } = useHeader();
+  const { handleButtonMenu, data, pathname, isLoading } = useHeader();
+
+  if (isLoading) return "";
+
   return (
     <>
       <motion.div
         onClick={handleButtonMenu}
-        animate={menuOpened ? "open" : "closed"}
+        animate={data.menuOpened ? "open" : "closed"}
         variants={{
           open: { opacity: 1, display: "block" },
           closed: { opacity: 0, transitionEnd: { display: "none" } },
@@ -20,7 +23,7 @@ export default function SideMenu({ links }) {
         style={{ opacity: 0 }}
       ></motion.div>
       <motion.div
-        animate={menuOpened ? "open" : "closed"}
+        animate={data.menuOpened ? "open" : "closed"}
         variants={{
           open: { transform: "translateX(0%)", display: "block" },
           closed: {
@@ -28,7 +31,7 @@ export default function SideMenu({ links }) {
             transitionEnd: { display: "none" },
           },
         }}
-        className="fixed inset-y-0 left-0 z-50 w-full max-w-[90%] xs:max-w-80"
+        className="fixed inset-y-0 left-0 z-50 w-full max-w-[85%] xs:max-w-80"
         style={{ transform: "translateX(-100%)" }}
       >
         <div className="flex flex-col h-full px-2 bg-white">

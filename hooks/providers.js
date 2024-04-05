@@ -6,6 +6,7 @@ const ThemeContext = createContext({});
 
 export const ThemeContextProvider = ({ children }) => {
   const [data, setData] = useState({
+    menuOpened: false,
     categories: [
       { name: "info", href: "category/info" },
       { name: "tips & tricks", href: "category/tips-and-tricks" },

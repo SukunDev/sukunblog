@@ -24,7 +24,7 @@ export default function Headers() {
     <>
       <div
         className={`py-3 relative xs:fixed inset-x-0 z-50 top-0 transition duration-300 ${
-          scrollY > 50 ? "bg-white shadow-md" : "bg-transparent"
+          scrollY > 50 ? "xs:bg-white xs:shadow-md" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto">
@@ -41,7 +41,7 @@ export default function Headers() {
                 href={process.env.NEXT_PUBLIC_URL}
               >
                 <Image
-                  className="inline mr-2"
+                  className="inline mb-1 mr-2"
                   src={"/uploads/lutfi-cartoon.png"}
                   width={38}
                   height={38}
