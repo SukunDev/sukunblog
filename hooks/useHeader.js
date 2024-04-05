@@ -1,24 +1,25 @@
 import { useThemeContext } from "@/hooks/providers";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function useHeader() {
   const pathname = usePathname();
-  const { data, handleDataChange } = useThemeContext();
+  const { data } = useThemeContext();
+  const [menuOpened, setMenuOpened] = useState(false);
 
   const handleButtonMenu = () => {
-    handleDataChange({ menuOpened: !data.menuOpened });
+    setMenuOpened(!menuOpened);
   };
 
   useEffect(() => {
-    if (data.menuOpened) {
+    if (menuOpened) {
       document.querySelector("body").classList.add("overflow-hidden");
     } else {
       document.querySelector("body").classList.remove("overflow-hidden");
     }
-  }, [data]);
+  }, [menuOpened]);
 
-  return { handleButtonMenu, pathname, data };
+  return { handleButtonMenu, pathname, menuOpened, data };
 }
 
 export default useHeader;

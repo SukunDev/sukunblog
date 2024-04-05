@@ -14,6 +14,7 @@ import {
 import NavLink from "./navLink";
 import SideMenu from "./sideMenu";
 import useHeader from "@/hooks/useHeader";
+import Image from "next/image";
 
 export default function Headers() {
   const scrollY = useScroll();
@@ -39,6 +40,13 @@ export default function Headers() {
                 className="text-2xl font-bold"
                 href={process.env.NEXT_PUBLIC_URL}
               >
+                <Image
+                  className="inline mr-2"
+                  src={"/uploads/lutfi-cartoon.png"}
+                  width={38}
+                  height={38}
+                  alt="Logo"
+                />
                 Sukun<span className="font-normal">Dev</span>
               </Link>
             </h1>
