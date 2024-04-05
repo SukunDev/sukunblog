@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 function usePostsForm({ post }) {
   const router = useRouter();
   const { data } = useAdminThemeContext();
+  const [metaCharacterCount, setMetaCharacterCount] = useState(0);
   const [formData, setFormData] = useState({
     user_id: data.user.id,
     user_email: data.user.email,
@@ -27,11 +28,19 @@ function usePostsForm({ post }) {
     if (fieldName === "title") {
       createSlug(fieldValue);
     }
+    if (fieldName === "meta_description") {
+      countMeta(e);
+    }
 
     setFormData((prevState) => ({
       ...prevState,
       [fieldName]: fieldValue,
     }));
+  };
+
+  const countMeta = (e) => {
+    var text = e.target.value;
+    setMetaCharacterCount(text.trim().length);
   };
 
   const createSlug = (title) => {
@@ -71,6 +80,7 @@ function usePostsForm({ post }) {
     handleInput,
     handleSubmit,
     formData,
+    metaCharacterCount,
   };
 }
 

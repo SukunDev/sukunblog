@@ -60,3 +60,25 @@ export function addIdToHeadings(html) {
 export function capitalize(string) {
   return string.replace(/^./, string[0].toUpperCase());
 }
+
+export function convertToWebP(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        canvas.toBlob((blob) => {
+          resolve(new File([blob], file.name, { type: "image/webp" }));
+        }, "image/webp");
+      };
+    };
+    reader.onerror = (error) => reject(error);
+  });
+}

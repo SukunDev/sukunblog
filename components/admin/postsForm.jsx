@@ -6,7 +6,8 @@ import usePostsForm from "@/hooks/admin/usePostsForm";
 import Thumbnail from "./thumbnails";
 
 export default function PostsForm({ post, categories }) {
-  const { handleInput, handleSubmit, formData } = usePostsForm({ post });
+  const { handleInput, handleSubmit, formData, metaCharacterCount } =
+    usePostsForm({ post });
 
   return (
     <form
@@ -65,6 +66,9 @@ export default function PostsForm({ post, categories }) {
             id="metaDescription"
             rows={6}
           />
+          <div className="flex justify-end gap-4 mr-2">
+            <p>{metaCharacterCount} Characters</p>
+          </div>
         </div>
         <div className="flex flex-col space-y-2">
           <label

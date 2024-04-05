@@ -14,6 +14,7 @@ import {
 import NavLink from "./navLink";
 import SideMenu from "./sideMenu";
 import useHeader from "@/hooks/useHeader";
+import Image from "next/image";
 
 export default function Headers() {
   const scrollY = useScroll();
@@ -23,7 +24,7 @@ export default function Headers() {
     <>
       <div
         className={`py-3 relative xs:fixed inset-x-0 z-50 top-0 transition duration-300 ${
-          scrollY > 50 ? "bg-white shadow-md" : "bg-transparent"
+          scrollY > 50 ? "xs:bg-white xs:shadow-md" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto">
@@ -39,6 +40,13 @@ export default function Headers() {
                 className="text-2xl font-bold"
                 href={process.env.NEXT_PUBLIC_URL}
               >
+                <Image
+                  className="inline mb-1 mr-2"
+                  src={"/uploads/lutfi-cartoon.png"}
+                  width={38}
+                  height={38}
+                  alt="Logo"
+                />
                 Sukun<span className="font-normal">Dev</span>
               </Link>
             </h1>
