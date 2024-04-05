@@ -66,6 +66,23 @@ export default function PostsForm({ post, categories }) {
             rows={6}
           />
         </div>
+        <div className="flex flex-col space-y-2">
+          <label
+            className="text-lg font-medium capitalize"
+            htmlFor="meta_keywords"
+          >
+            meta keywords
+          </label>
+          <input
+            className="px-4 py-2 transition duration-300 bg-gray-100 rounded-lg outline-none hover:bg-gray-50 focus:bg-gray-50"
+            onChange={handleInput}
+            value={formData.meta_keywords}
+            type="text"
+            name="meta_keywords"
+            id="meta_keywords"
+            required
+          />
+        </div>
       </main>
       <aside className="sticky top-0 self-start col-span-1 lg:col-span-2">
         <div className="flex flex-col w-full p-4 bg-white rounded-xl">

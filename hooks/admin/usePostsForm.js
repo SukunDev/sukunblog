@@ -15,6 +15,7 @@ function usePostsForm({ post }) {
     slug: post?.slug,
     categories_id: post?.categories.id,
     meta_description: post?.meta_description,
+    meta_keywords: post?.meta_keywords,
     thumbnail: post?.thumbnail,
     visibility: post?.visibility,
   });
