@@ -89,6 +89,7 @@ export async function getPost({ params }) {
       ),
       visibility,
       meta_description,
+      meta_keywords,
       created_at
     `
     )
