@@ -1,4 +1,5 @@
 import axios from "axios";
+import sharp from "sharp";
 import { NextResponse } from "next/server";
 
 export const POST = async (req, res) => {
@@ -8,15 +9,34 @@ export const POST = async (req, res) => {
   if (!file) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
-  const filename = file.name.replaceAll(" ", "_");
+  const filename = file.name.replace(/\.[^/.]+$/, "");
   try {
     let data = new FormData();
-    data.append("image", file);
+    let imageBuffer;
+
+    // Check if the file is not in WebP format, convert it to WebP
+    if (file.type !== "image/webp") {
+      const buffer = await file.arrayBuffer();
+      imageBuffer = await sharp(buffer)
+        .webp() // Convert to WebP
+        .toBuffer();
+    } else {
+      const buffer = await file.arrayBuffer();
+      imageBuffer = Buffer.from(buffer);
+    }
+
+    // Create a Blob from imageBuffer
+    const blob = new Blob([imageBuffer], { type: "image/webp" });
+
+    // Append Blob to FormData
+    data.append("image", blob, filename);
     data.append("name", filename);
+
     const response = await axios.post(
       `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API}`,
       data
     );
+
     if (response.data.success) {
       return NextResponse.json({
         success: true,
