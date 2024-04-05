@@ -12,15 +12,17 @@ export const POST = async (req, res) => {
   try {
     let data = new FormData();
     data.append("image", file);
-    data.append("type", "file");
-    data.append("title", filename);
-    const response = await axios.post(`https://api.imgur.com/3/image`, data, {
-      Authorization: `Client-ID ${process.env.NEXT_PUBLIC_IMGUR_CLIENT_ID}`,
-    });
+    data.append("name", filename);
+    const response = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API}`,
+      data
+    );
     if (response.data.success) {
       return NextResponse.json({
         success: true,
-        result: `${process.env.NEXT_PUBLIC_URL}/img/${response.data.data.id}`,
+        result: `${
+          process.env.NEXT_PUBLIC_URL
+        }/img/${response.data.data.image.url.replace("https://i.ibb.co/", "")}`,
         status: 201,
       });
     } else {
