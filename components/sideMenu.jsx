@@ -5,16 +5,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect } from "react";
 
-export default function SideMenu({ links }) {
-  const { handleButtonMenu, data, pathname, isLoading } = useHeader();
-
-  if (isLoading) return "";
+export default function SideMenu({ links, menuOpened, handleButtonMenu }) {
+  const { pathname } = useHeader();
 
   return (
     <>
       <motion.div
         onClick={handleButtonMenu}
-        animate={data.menuOpened ? "open" : "closed"}
+        animate={menuOpened ? "open" : "closed"}
         variants={{
           open: { opacity: 1, display: "block" },
           closed: { opacity: 0, transitionEnd: { display: "none" } },
@@ -23,7 +21,7 @@ export default function SideMenu({ links }) {
         style={{ opacity: 0 }}
       ></motion.div>
       <motion.div
-        animate={data.menuOpened ? "open" : "closed"}
+        animate={menuOpened ? "open" : "closed"}
         variants={{
           open: { transform: "translateX(0%)", display: "block" },
           closed: {

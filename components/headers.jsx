@@ -18,13 +18,13 @@ import Image from "next/image";
 
 export default function Headers() {
   const scrollY = useScroll();
-  const { data, handleButtonMenu } = useHeader();
+  const { data, handleButtonMenu, menuOpened } = useHeader();
 
   return (
     <>
       <div
         className={`py-3 relative xs:fixed inset-x-0 z-50 top-0 transition duration-300 ${
-          scrollY > 50 ? "xs:bg-white xs:shadow-md" : "bg-transparent"
+          scrollY > 30 ? "xs:bg-white xs:shadow-md" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto">
@@ -57,7 +57,11 @@ export default function Headers() {
           </div>
         </div>
       </div>
-      <SideMenu links={data.categories} />
+      <SideMenu
+        handleButtonMenu={handleButtonMenu}
+        menuOpened={menuOpened}
+        links={data.categories}
+      />
       <div className="fixed inset-x-0 bottom-0 z-40 block xs:hidden">
         <div className="px-4 py-2 bg-white shadow-lg">
           <ul className="flex items-center justify-between text-slate-600">
