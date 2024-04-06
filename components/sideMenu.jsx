@@ -18,7 +18,7 @@ export default function SideMenu({ links, menuOpened, handleButtonMenu }) {
           closed: { opacity: 0, transitionEnd: { display: "none" } },
         }}
         className="fixed inset-0 z-50 bg-black/75"
-        style={{ opacity: 0 }}
+        style={{ opacity: 0, display: "none" }}
       ></motion.div>
       <motion.div
         animate={menuOpened ? "open" : "closed"}
