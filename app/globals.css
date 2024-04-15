@@ -11,5 +11,5 @@
   @apply prose max-w-none prose-sm xs:prose-base prose-headings:mt-4 prose-headings:mb-4 prose-headings:text-slate-800 prose-headings:font-medium prose-p:text-slate-800 prose-p:m-auto prose-a:text-blue-500 hover:prose-a:text-blue-400 prose-a:no-underline prose-a:transition prose-a:duration-300 prose-strong:text-slate-800 prose-strong:font-semibold prose-ul:text-slate-800 prose-ol:text-slate-800 prose-blockquote:text-slate-800;
 }
 .article pre {
-  @apply my-0 p-0;
+  @apply my-2 p-0 bg-slate-950 text-sm md:text-base;
 }
