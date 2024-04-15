@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 export const config = {
   extraPlugins: [MyCustomUploadAdapterPlugin],
+  editorClass: "article",
   link: {
     decorators: {
       openInNewTab: {

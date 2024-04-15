@@ -19,6 +19,7 @@ export async function generateMetadata({ params }) {
       canonical: `/${post.slug}`,
     },
     title: post.title,
+    description: post.meta_description,
     openGraph: {
       title: post.title,
       description: post.meta_description,
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }) {
       type: "article",
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_URL}/${post.thumbnail}`,
+          url: post.thumbnail,
         },
       ],
     },
