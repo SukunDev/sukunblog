@@ -9,16 +9,25 @@ import {
   PiFire,
   PiHouseSimple,
   PiList,
+  PiPhone,
   PiSquaresFour,
+  PiUser,
 } from "react-icons/pi";
 import NavLink from "./navLink";
 import SideMenu from "./sideMenu";
 import useHeader from "@/hooks/useHeader";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Headers() {
   const scrollY = useScroll();
-  const { data, handleButtonMenu, menuOpened } = useHeader();
+  const {
+    data,
+    handleButtonMenu,
+    handleSearchButton,
+    menuOpened,
+    searchOpened,
+  } = useHeader();
 
   return (
     <>
@@ -51,7 +60,11 @@ export default function Headers() {
               </Link>
             </h1>
             <NavLink links={data.categories} />
-            <button className="hidden p-4 xs:block" aria-label="Search Button">
+            <button
+              onClick={handleSearchButton}
+              className="hidden p-4 xs:block"
+              aria-label="Search Button"
+            >
               <IoIosSearch className="text-3xl transition duration-300 text-slate-500 hover:text-slate-700 active:text-slate-500" />
             </button>
           </div>
@@ -77,25 +90,25 @@ export default function Headers() {
             <li>
               <Link
                 className="text-xs capitalize"
-                href={process.env.NEXT_PUBLIC_URL}
+                href={`${process.env.NEXT_PUBLIC_URL}/contact`}
               >
-                <PiBookOpenText className="ml-1 text-3xl" />
-                article
+                <PiPhone className="ml-2 text-3xl" />
+                Contact
               </Link>
             </li>
             <li className="relative max-w-[62px] w-full">
               <Link
-                className="absolute p-3 text-3xl text-white bg-indigo-500 rounded-full insetx-0 mx-auto -top-[3.8rem] border-[6px] border-gray-50"
-                href={"/category/popular"}
+                className="absolute p-3 text-3xl text-white bg-indigo-500 rounded-full insetx-0 mx-auto -top-[3.8rem] -left-1 border-[6px] border-gray-50"
+                href={`${process.env.NEXT_PUBLIC_URL}/about`}
               >
-                <PiFire />
+                <PiUser />
               </Link>
-              <span className="absolute inset-x-0 m-auto mr-1 text-xs capitalize text-slate-600 w-fit -bottom-6">
-                popular
+              <span className="absolute inset-x-0 m-auto mr-1 text-xs capitalize text-slate-600 w-fit -bottom-6 whitespace-nowrap">
+                about me
               </span>
             </li>
             <li>
-              <button className="text-xs">
+              <button onClick={handleSearchButton} className="text-xs">
                 <IoIosSearch className="ml-1 text-3xl" />
                 search
               </button>
@@ -109,6 +122,41 @@ export default function Headers() {
           </ul>
         </div>
       </div>
+      <motion.div
+        animate={searchOpened ? "open" : "closed"}
+        variants={{
+          open: { opacity: 1, display: "block" },
+          closed: { opacity: 0, transitionEnd: { display: "none" } },
+        }}
+        onClick={handleSearchButton}
+        className="fixed inset-0 z-50 backdrop-blur-sm bg-black/20"
+        style={{ display: "none" }}
+      ></motion.div>
+      <motion.div
+        animate={searchOpened ? "open" : "closed"}
+        variants={{
+          open: { scale: 1, display: "block" },
+          closed: { scale: 0, transitionEnd: { display: "none" } },
+        }}
+        className="fixed inset-0 w-full max-w-xl h-fit m-auto z-[60]"
+        style={{ display: "none" }}
+      >
+        <form className="flex items-center" action="/" method="GET">
+          <input
+            className="w-full p-3 text-lg bg-white rounded-l-lg outline-none md:p-4"
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search ..."
+          />
+          <button
+            className="p-[14px] md:p-[18px] bg-white rounded-r-lg"
+            type="submit"
+          >
+            <IoIosSearch className="text-2xl" />
+          </button>
+        </form>
+      </motion.div>
     </>
   );
 }

@@ -1,8 +1,9 @@
 "use server";
 
+import ArticleCard from "@/components/articleCard";
 import SingleArticle from "@/components/singleArticle";
 import MainLayout from "@/layouts/MainLayout/MainLayout";
-import { getPost } from "@/utils/clientAction";
+import { getPost, getPostsCategories } from "@/utils/clientAction";
 import { formatDate } from "@/utils/heper";
 import Link from "next/link";
 import React from "react";
@@ -38,6 +39,11 @@ export async function generateMetadata({ params }) {
 
 export default async function SinglePost({ params }) {
   const { post } = await getPost({ params });
+  const { posts: related_post } = await getPostsCategories({
+    params: {
+      slug: [post.categories.slug],
+    },
+  });
 
   const jsonLd = [
     {
@@ -178,6 +184,22 @@ export default async function SinglePost({ params }) {
             </li>
           </ul>
           <SingleArticle post={post} />
+          <br />
+          <hr />
+          {related_post.length > 0 ? (
+            <div className="flex flex-col mt-4">
+              <h3 className="text-xl font-bold text-slate-800">
+                Related Posts
+              </h3>
+              <div className="grid grid-cols-1 gap-8 mt-4 sm:gap-16 md:gap-4 md:grid-cols-2">
+                {related_post.slice(0, 4).map((item, idx) => (
+                  <ArticleCard key={item.id} post={item} />
+                ))}
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </MainLayout>
     </>

@@ -6,20 +6,32 @@ function useHeader() {
   const pathname = usePathname();
   const { data } = useThemeContext();
   const [menuOpened, setMenuOpened] = useState(false);
+  const [searchOpened, setSearchOpened] = useState(false);
 
   const handleButtonMenu = () => {
     setMenuOpened(!menuOpened);
   };
 
+  const handleSearchButton = () => {
+    setSearchOpened(!searchOpened);
+  };
+
   useEffect(() => {
-    if (menuOpened) {
+    if (menuOpened || searchOpened) {
       document.querySelector("body").classList.add("overflow-hidden");
     } else {
       document.querySelector("body").classList.remove("overflow-hidden");
     }
-  }, [menuOpened]);
+  }, [menuOpened, searchOpened]);
 
-  return { handleButtonMenu, pathname, data, menuOpened };
+  return {
+    handleButtonMenu,
+    handleSearchButton,
+    pathname,
+    data,
+    menuOpened,
+    searchOpened,
+  };
 }
 
 export default useHeader;
