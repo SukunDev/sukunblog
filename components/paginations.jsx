@@ -16,7 +16,9 @@ export default function Paginations({ meta_paginator }) {
             <Link
               className="block p-2 mx-1 transition duration-300 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-600 hover:text-white rounded-xl active:scale-110"
               href={`${process.env.NEXT_PUBLIC_URL}${
-                current_page - 1 === 1 ? "/" : "/page/" + current_page - 1
+                Math.floor(current_page - 1) === 1
+                  ? "/"
+                  : "/page/" + Math.floor(current_page - 1)
               }`}
               aria-label="Previous Button"
             >
@@ -49,7 +51,9 @@ export default function Paginations({ meta_paginator }) {
           <li>
             <Link
               className="block p-2 mx-1 transition duration-300 border-2 border-gray-500 hover:bg-gray-600 hover:border-gray-600 hover:text-white rounded-xl active:scale-110"
-              href={`${process.env.NEXT_PUBLIC_URL}/page/${current_page + 1}`}
+              href={`${process.env.NEXT_PUBLIC_URL}/page/${Math.floor(
+                current_page + 1
+              )}`}
               aria-label="Next Button"
             >
               <PiCaretLeft className="text-xl rotate-180" />

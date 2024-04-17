@@ -104,8 +104,8 @@ export default async function SinglePost({ params }) {
           image: {
             "@type": "ImageObject",
             url: "https://avatars.githubusercontent.com/u/83165558?v=4",
-            height: 96,
-            width: 96,
+            height: 460,
+            width: 460,
           },
         },
         publisher: {
@@ -115,8 +115,8 @@ export default async function SinglePost({ params }) {
           logo: {
             "@type": "ImageObject",
             url: `${process.env.NEXT_PUBLIC_URL}/uploads/lutfi-cartoon.png`,
-            width: "500",
-            height: "500",
+            width: 8504,
+            height: 8504,
           },
         },
         image: [
@@ -124,8 +124,8 @@ export default async function SinglePost({ params }) {
             "@type": "ImageObject",
             "@id": `${process.env.NEXT_PUBLIC_URL}/${post.slug}/#primaryimage`,
             url: post.thumbnail,
-            width: "2306",
-            height: "1297",
+            width: 1280,
+            height: 720,
             caption: post.title,
           },
         ],
@@ -137,8 +137,8 @@ export default async function SinglePost({ params }) {
         logo: {
           "@type": "ImageObject",
           url: `${process.env.NEXT_PUBLIC_URL}/uploads/lutfi-cartoon.png`,
-          width: "500",
-          height: "500",
+          width: 8504,
+          height: 8504,
         },
       },
     },

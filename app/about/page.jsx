@@ -54,8 +54,8 @@ const jsonLd = [
         image: {
           "@type": "ImageObject",
           url: "https://avatars.githubusercontent.com/u/83165558?v=4",
-          height: 96,
-          width: 96,
+          height: 460,
+          width: 460,
         },
       },
       publisher: {
@@ -65,16 +65,16 @@ const jsonLd = [
         logo: {
           "@type": "ImageObject",
           url: `${process.env.NEXT_PUBLIC_URL}/uploads/lutfi-cartoon.png`,
-          width: "500",
-          height: "500",
+          width: 8504,
+          height: 8504,
         },
       },
       image: {
         "@type": "ImageObject",
         "@id": `${process.env.NEXT_PUBLIC_URL}/#primaryimage`,
         url: `${process.env.NEXT_PUBLIC_URL}/uploads/lutfi-cartoon.png`,
-        width: "3544",
-        height: "3544",
+        width: 8504,
+        height: 8504,
       },
     },
     reviewedBy: {
@@ -84,8 +84,8 @@ const jsonLd = [
       logo: {
         "@type": "ImageObject",
         url: `${process.env.NEXT_PUBLIC_URL}/uploads/lutfi-cartoon.png`,
-        width: "500",
-        height: "500",
+        width: 8504,
+        height: 8504,
       },
     },
   },
@@ -99,13 +99,13 @@ const jsonLd = [
     logo: {
       "@type": "ImageObject",
       url: `${process.env.NEXT_PUBLIC_URL}/uploads/lutfi-cartoon.png`,
-      width: "500",
-      height: "500",
+      width: 8504,
+      height: 8504,
     },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      telephone: "+62-813-2532-4102",
+      telephone: "+62-853-3611-7892",
       url: `${process.env.NEXT_PUBLIC_URL}/contact/`,
     },
   },
