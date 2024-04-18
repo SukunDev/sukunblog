@@ -1,6 +1,30 @@
 import { notFound } from "next/navigation";
 import { createClient } from "./supabase/client";
 
+export async function getAllPosts() {
+  try {
+    const supabase = createClient();
+    const { data: posts, error } = await supabase
+      .from("posts")
+      .select(
+        `
+          id,
+          slug,
+          visibility,
+          created_at
+        `
+      )
+      .eq("visibility", true)
+      .order("created_at", { ascending: false });
+
+    return {
+      posts,
+    };
+  } catch (error) {
+    return notFound();
+  }
+}
+
 export async function getPosts({ params }) {
   try {
     const PAGE_SIZE = 6;
